@@ -4,6 +4,11 @@
   "description": "A TypeScript port of the sfxr sound effect generator",
   "author": "Serge Paquet",
   "license": "MIT",
+  "homepage": "https://github.com/srgpqt/tsfxr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srgpqt/tsfxr.git"
+  },
   "main": "lib/index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.app.config.js --content-base app --colors --inline --progress --host 0.0.0.0",
