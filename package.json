@@ -1,0 +1,20 @@
+{
+  "name": "tsfxr",
+  "version": "0.0.1",
+  "description": "A TypeScript port of the sfxr sound effect generator",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.app.config.js --content-base app --colors --inline --progress --host 0.0.0.0",
+    "build": "npm run build:lib && npm run build:bundle && npm run build:app",
+    "build:app": "webpack --config webpack.app.config.js",
+    "build:bundle": "webpack --config webpack.lib.config.js",
+    "build:lib": "tsc --noImplicitAny --outDir lib src/index.ts"
+  },
+  "author": "Serge Paquet",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
+  }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jsfxr</title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		.slider-label { display: flex; justify-content: space-between; }
+	</style>
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+
+	<fieldset>
+		<legend>Generator</legend>
+
+		<button type="button" onclick="onGeneratorClick(event, 0)">Pickup / Coin</button>
+		<button type="button" onclick="onGeneratorClick(event, 1)">Laser / Shoot</button>
+		<button type="button" onclick="onGeneratorClick(event, 2)">Explosion</button>
+		<button type="button" onclick="onGeneratorClick(event, 3)">Powerup</button>
+		<button type="button" onclick="onGeneratorClick(event, 4)">Hit / Hurt</button>
+		<button type="button" onclick="onGeneratorClick(event, 5)">Jump</button>
+		<button type="button" onclick="onGeneratorClick(event, 6)">Blip / Select</button>
+
+		<button type="button" onclick="onRandomizeClick(event)">Randomize</button>
+		<button type="button" onclick="onMutateClick(event)">Mutate</button>
+	</fieldset>
+
+	<fieldset>
+		<legend>Wave</legend>
+
+		<label for="wave_type_sine">
+			<input name="wave_type" type="radio" value="2" onclick="onWaveTypeClick(event)" id="wave_type_sine" />
+			Sine
+		</label>
+		<label for="wave_type_square">
+			<input name="wave_type" type="radio" value="0" onclick="onWaveTypeClick(event)" id="wave_type_square" />
+			Squarewave
+		</label>
+		<label for="wave_type_sawtooth">
+			<input name="wave_type" type="radio" value="1" onclick="onWaveTypeClick(event)" id="wave_type_sawtooth" />
+			Sawtooth
+		</label>
+		<label for="wave_type_noise">
+			<input name="wave_type" type="radio" value="3" onclick="onWaveTypeClick(event)" id="wave_type_noise" />
+			Noise
+		</label>
+	</fieldset>
+
+	<fieldset>
+		<legend>Manual Settings</legend>
+
+		<label for="sound_vol" class="slider-label">
+			Volume
+			<input type="range" name="sound_vol" id="sound_vol" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+
+		<label for="p_env_attack" class="slider-label">
+			Attack Time
+			<input type="range" name="p_env_attack" id="p_env_attack" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_env_sustain" class="slider-label">
+			Sustain Time
+			<input type="range" name="p_env_sustain" id="p_env_sustain" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_env_punch" class="slider-label">
+			Sustain Punch
+			<input type="range" name="p_env_punch" id="p_env_punch" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_env_decay" class="slider-label">
+			Decay Time
+			<input type="range" name="p_env_decay" id="p_env_decay" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+
+		<label for="p_base_freq" class="slider-label">
+			Start Frequency
+			<input type="range" name="p_base_freq" id="p_base_freq" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_freq_limit" class="slider-label">
+			Min Frequency
+			<input type="range" name="p_freq_limit" id="p_freq_limit" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_freq_ramp" class="slider-label">
+			Slide
+			<input type="range" name="p_freq_ramp" id="p_freq_ramp" min="-1" max="1" step="0.005" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_freq_dramp" class="slider-label">
+			Delta Slide
+			<input type="range" name="p_freq_dramp" id="p_freq_dramp" min="-1" max="1" step="0.005" onchange="onSliderChange(event)" />
+		</label>
+
+		<label for="p_vib_strength" class="slider-label">
+			Vibrato Depth
+			<input type="range" name="p_vib_strength" id="p_vib_strength" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_vib_speed" class="slider-label">
+			Vibrato Speed
+			<input type="range" name="p_vib_speed" id="p_vib_speed" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+
+		<label for="p_arp_mod" class="slider-label">
+			Change Amount
+			<input type="range" name="p_arp_mod" id="p_arp_mod" min="-1" max="1" step="0.005" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_arp_speed" class="slider-label">
+			Change Speed
+			<input type="range" name="p_arp_speed" id="p_arp_speed" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+
+		<label for="p_duty" class="slider-label">
+			Square Duty
+			<input type="range" name="p_duty" id="p_duty" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_duty_ramp" class="slider-label">
+			Duty Sweep
+			<input type="range" name="p_duty_ramp" id="p_duty_ramp" min="-1" max="1" step="0.005" onchange="onSliderChange(event)" />
+		</label>
+
+		<label for="p_repeat_speed" class="slider-label">
+			Repeat Speed
+			<input type="range" name="p_repeat_speed" id="p_repeat_speed" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+
+		<label for="p_pha_offset" class="slider-label">
+			Phaser Offset
+			<input type="range" name="p_pha_offset" id="p_pha_offset" min="-1" max="1" step="0.005" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_pha_ramp" class="slider-label">
+			Phaser Sweep
+			<input type="range" name="p_pha_ramp" id="p_pha_ramp" min="-1" max="1" step="0.005" onchange="onSliderChange(event)" />
+		</label>
+
+		<label for="p_lpf_freq" class="slider-label">
+			Lp Filter Cutoff
+			<input type="range" name="p_lpf_freq" id="p_lpf_freq" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_lpf_ramp" class="slider-label">
+			Lp Filter Cutoff Sweep
+			<input type="range" name="p_lpf_ramp" id="p_lpf_ramp" min="-1" max="1" step="0.005" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_lpf_resonance" class="slider-label">
+			Lp Filter Resonance
+			<input type="range" name="p_lpf_resonance" id="p_lpf_resonance" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_hpf_freq" class="slider-label">
+			Hp Filter Cutoff
+			<input type="range" name="p_hpf_freq" id="p_hpf_freq" min="0" max="1" step="0.0025" onchange="onSliderChange(event)" />
+		</label>
+		<label for="p_hpf_ramp" class="slider-label">
+			Hp Filter Cutoff Sweep
+			<input type="range" name="p_hpf_ramp" id="p_hpf_ramp" min="-1" max="1" step="0.005" onchange="onSliderChange(event)" />
+		</label>
+	</fieldset>
+
+	<fieldset>
+		<legend>Frequency</legend>
+
+		<label for="wav_freq_44100">
+			<input name="wav_freq" type="radio" value="44100" onclick="onWaveFrequencyClick(event)" id="wav_freq_44100" />
+			44.1 KHZ
+		</label>
+		<label for="wav_freq_22050">
+			<input name="wav_freq" type="radio" value="22050" onclick="onWaveFrequencyClick(event)" id="wav_freq_22050" />
+			22.05 KHZ
+		</label>
+	</fieldset>
+
+	<fieldset>
+		<legend>Bit depth</legend>
+
+		<label for="wav_bits_8">
+			<input name="wav_bits" type="radio" value="8" onclick="onWaveBitsClick(event)" id="wav_bits_8" />
+			8 bits
+		</label>
+		<label for="wav_bits_16">
+			<input name="wav_bits" type="radio" value="16" onclick="onWaveBitsClick(event)" id="wav_bits_16" />
+			16 bits
+		</label>
+	</fieldset>
+
+</body>
+</html>
